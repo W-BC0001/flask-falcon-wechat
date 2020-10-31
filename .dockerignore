@@ -1,0 +1,7 @@
+*.pyc
+__pycache__/
+flask-falcon-wechat/venv
+flask-falcon-wechat/*.pyc
+flask-falcon-wechat/__pycache__/
+flask-falcon-wechat/token.txt
+flask-falcon-wechat/logs/*.log

@@ -1,0 +1,9 @@
+.idea/
+templates/
+venv/
+static/
+*.pyc
+token.txt
+__pycache__/
+logs/*.log*
+overrides.py

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  flask-falcon-wechat:
+    build: .
+    container_name: flask-falcon-wechat
+    ports:
+      - 2333:2333
+    volumes:
+      - ./flask-falcon-wechat/overrides.py:/opt/flask-falcon-wechat/flask-falcon-wechat/overrides.py

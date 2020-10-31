@@ -1,0 +1,45 @@
+#!/bin/sh
+
+action=$1
+action=${action:="version"}
+
+function start() {
+    nohup python app.py >> logs/app.log 2>&1 &
+}
+
+function stop() {
+    process_pid=$(ps -ef | grep -w 'flask-falcon-wechat' | grep -v grep | awk '{print $2}')
+    kill $process_pid
+    rm -f ./*.pyc
+}
+
+function version() {
+    # How is this font generated?
+    # Please visit this website:
+    # http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=flask%20falcon%20wechat
+    echo "
+    ███████╗██╗      █████╗ ███████╗██╗  ██╗    ███████╗ █████╗ ██╗      ██████╗ ██████╗ ███╗   ██╗    ██╗    ██╗███████╗ ██████╗██╗  ██╗ █████╗ ████████╗
+    ██╔════╝██║     ██╔══██╗██╔════╝██║ ██╔╝    ██╔════╝██╔══██╗██║     ██╔════╝██╔═══██╗████╗  ██║    ██║    ██║██╔════╝██╔════╝██║  ██║██╔══██╗╚══██╔══╝
+    █████╗  ██║     ███████║███████╗█████╔╝     █████╗  ███████║██║     ██║     ██║   ██║██╔██╗ ██║    ██║ █╗ ██║█████╗  ██║     ███████║███████║   ██║
+    ██╔══╝  ██║     ██╔══██║╚════██║██╔═██╗     ██╔══╝  ██╔══██║██║     ██║     ██║   ██║██║╚██╗██║    ██║███╗██║██╔══╝  ██║     ██╔══██║██╔══██║   ██║
+    ██║     ███████╗██║  ██║███████║██║  ██╗    ██║     ██║  ██║███████╗╚██████╗╚██████╔╝██║ ╚████║    ╚███╔███╔╝███████╗╚██████╗██║  ██║██║  ██║   ██║
+    ╚═╝     ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝     ╚══╝╚══╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   1.0 Plus
+
+    $0 ( start | stop | restart | version )
+    "
+}
+
+case $action in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop && start
+        ;;
+    *)
+        version
+        ;;
+esac
