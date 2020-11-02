@@ -20,7 +20,7 @@
 ```
 cd /opt/
 
-git clone git@github.com:W-BC0001/flask-falcon-wechat.git
+git clone https://github.com/W-BC0001/flask-falcon-wechat.git
 
 cd flask-falcon-wechat/flask-falcon-wechat
 ```
